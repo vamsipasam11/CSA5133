@@ -1,0 +1,31 @@
+def encrypt(word):
+    result=''
+    for ch in word:
+        if ch in l:
+            i=l.index(ch)
+            result=result+e[i]
+        else:
+            result+=ch
+    print("The Encrypted word is:",result)
+def decrypt(word):
+    result=''
+    for ch in word:
+        if ch in e:
+            i=e.index(ch)
+            result=result+l[i]
+        else:
+            result+=ch
+    print("The Decrypted word is:",result)
+
+l=list('abcdefghijklmnopqrstuvwxyz')
+e=list('qwertyuiopasdfghjklzxcvbnm')
+c=input("Enter a word:").lower()
+print("Choice 1: Encryption")
+print("Choice 2: Decryption")
+choice=input("Enter the mode:")
+if choice=="1":
+    encrypt(c)
+elif choice=="2":
+    decrypt(c)
+else:
+    print("Enter a valid choice!.")
