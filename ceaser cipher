@@ -1,0 +1,25 @@
+l=list('abcdefghijklmnopqrstuvwxyz') 
+k=int(input("Enter the key:"))
+print("Choice 1: Encryption")
+print("Choice 2: Decryption")
+choice=int(input("Enter Your choice:"))
+c=input("Enter Text:").lower()
+result=''
+if choice==1:
+    for ch in c:
+        if ch in l:
+            i = l.index(ch)
+            ni=(i+k)%26
+            result+=l[ni]
+        else:
+            result += ch
+    print("The converted Text is:",result)
+if choice==2:
+    for ch in c:
+        if ch in l:
+            i=l.index(ch)
+            ni=(i-k)%26
+            result+=l[ni]
+        else:
+            result+=ch
+    print("The converted Text is:",result)
