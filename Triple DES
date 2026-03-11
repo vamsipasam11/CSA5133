@@ -1,0 +1,33 @@
+import numpy as np
+
+def des_operation(block, key_val, mode="encrypt"):
+    """
+    Simulated DES operation. 
+    In a full version, this would be the 16-round Feistel network.
+    """
+    if mode == "encrypt":
+        return block ^ key_val
+    else:
+        return block ^ key_val
+
+def triple_des():
+    
+    plaintext = int(input("Enter Plaintext as integer: "))
+    
+    print("\nTriple DES requires 3 keys:")
+    k1 = int(input("Enter Key 1: "))
+    k2 = int(input("Enter Key 2: "))
+    k3 = int(input("Enter Key 3: "))
+
+
+    
+    step1 = des_operation(plaintext, k1, "encrypt")
+    step2 = des_operation(step1, k2, "decrypt")
+    ciphertext = des_operation(step2, k3, "encrypt")
+
+    print(f"Phase 1 (Encrypt K1): {step1}")
+    print(f"Phase 2 (Decrypt K2): {step2}")
+    print(f"Final Ciphertext:     {ciphertext}")
+
+if __name__ == "__main__":
+    triple_des()
