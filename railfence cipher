@@ -1,0 +1,49 @@
+def rail_fence_cipher():
+   
+    text = input("Enter Message: ").upper().replace(" ", "")
+    rails = int(input("Enter number of Rails: "))
+    
+ 
+    fence = [['\n' for _ in range(len(text))] for _ in range(rails)]
+    rail, direction = 0, 1 
+    
+ 
+    for i in range(len(text)):
+        fence[rail][i] = text[i]
+        if rail == 0: direction = 1
+        elif rail == rails - 1: direction = -1
+        rail += direction
+            
+    ciphertext = "".join(["".join([c for c in row if c != '\n']) for row in fence])
+    print(f"\nEncrypted Ciphertext: {ciphertext}")
+
+  
+    decrypt_fence = [['\n' for _ in range(len(ciphertext))] for _ in range(rails)]
+    rail, direction = 0, 1
+    for i in range(len(ciphertext)):
+        decrypt_fence[rail][i] = '*'
+        if rail == 0: direction = 1
+        elif rail == rails - 1: direction = -1
+        rail += direction
+            
+   
+    idx = 0
+    for r in range(rails):
+        for c in range(len(ciphertext)):
+            if decrypt_fence[r][c] == '*' and idx < len(ciphertext):
+                decrypt_fence[r][c] = ciphertext[idx]
+                idx += 1
+                
+ 
+    decrypted = ""
+    rail, direction = 0, 1
+    for i in range(len(ciphertext)):
+        decrypted += decrypt_fence[rail][i]
+        if rail == 0: direction = 1
+        elif rail == rails - 1: direction = -1
+        rail += direction
+            
+    print(f"Decrypted Plaintext:  {decrypted}")
+
+
+rail_fence_cipher()
